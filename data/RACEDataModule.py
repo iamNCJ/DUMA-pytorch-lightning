@@ -95,7 +95,7 @@ class RACEDataModule(pl.LightningDataModule):
                 # fill in the banks questions
                 question_option = question.replace("_", option)
             else:
-                question_option = question + " [SEP] " + option
+                question_option = question + " " + option
 
             inputs = tokenizer(
                 article,
