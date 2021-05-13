@@ -19,11 +19,7 @@ class RACEDataModule(pl.LightningDataModule):
             train_batch_size: int = 32,
             eval_batch_size: int = 32,
             num_workers: int = 8,
-            num_preprocess_processes: int = 8,
-            use_sentence_selection: bool = False,
-            best_k_sentences: int = 5,
-            add_article_info: bool = True,
-            **kwargs
+            num_preprocess_processes: int = 8
     ):
         super().__init__()
         self.model_name_or_path = model_name_or_path
@@ -34,9 +30,6 @@ class RACEDataModule(pl.LightningDataModule):
         self.eval_batch_size = eval_batch_size
         self.num_workers = num_workers
         self.num_preprocess_processes = num_preprocess_processes
-        self.use_sentence_selection = use_sentence_selection
-        self.best_k_sentences = best_k_sentences
-        self.add_article_info = add_article_info
 
         self.tokenizer = BertTokenizerFast.from_pretrained(self.model_name_or_path, use_fast=True, do_lower_case=True)
         self.scorer = rouge_scorer.RougeScorer(['rouge1', 'rouge2'], use_stemmer=True)

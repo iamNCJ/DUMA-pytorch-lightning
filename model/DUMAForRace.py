@@ -23,6 +23,7 @@ def separate_seq2(sequence_output, flat_input_ids):
         for idx, e in enumerate(flat_input_ids[i]):
             if e == 102:
                 sep_lst.append(idx)
+        print(sep_lst)
         assert len(sep_lst) == 2
         qa_seq_output[i, :sep_lst[0] - 1] = sequence_output[i, 1:sep_lst[0]]
         qa_mask[i, :sep_lst[0] - 1] = 0
